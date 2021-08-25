@@ -1,0 +1,54 @@
+.popup{
+
+  &__close{
+    display: block;
+    position: absolute;
+    top: PXtoREM(8);
+    right: PXtoREM(8);
+    width: PXtoREM(24);
+    height: PXtoREM(24);
+    @media #{$min_w768} {
+      top: PXtoREM(24);
+      right: PXtoREM(24);
+      width: PXtoREM(34);
+      height: PXtoREM(34);
+    }
+
+    &:before,
+    &:after{
+      content: '';
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: black;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -50%;
+      transition: $transition;
+    }
+    &:hover:before,
+    &:hover:after{
+      background-color: black;
+    }
+    &:before{
+      transform: rotate(45deg);
+    }
+    &:after{
+      transform: rotate(-45deg);
+    }
+  }
+
+  .fancybox-slide{
+    padding: 0;
+  }
+}
+
+.fancybox-bg{
+  background: rgba(black, .4);
+}
+
+.success-popup{
+  width: 100%;
+  max-width: 600px;
+}

@@ -1,0 +1,14 @@
+/.idea
+/bitrix
+/upload
+.git
+.htaccess
+node_modules
+robots.txt
+*.sql
+*.log
+*.tgz
+*.zip
+sitemap*.xml
+google*.html
+yandex*.html

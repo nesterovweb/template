@@ -1,0 +1,38 @@
+.cookie-popup{
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: black;
+  color: white;
+  padding: PXtoREM(24) 0;
+  &._active{
+    display: block;
+  }
+
+  &__row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media #{$max_w768}{
+      flex-direction: column;
+    }
+
+    &__text{
+      @media #{$max_w768}{
+        margin-bottom: PXtoREM(24);
+      }
+      @media #{$min_w1024} {
+        padding-right: PXtoREM(24);
+      }
+    }
+
+    &__btns{
+      @media #{$max_w768}{
+        text-align: center;
+      }
+    }
+  }
+}

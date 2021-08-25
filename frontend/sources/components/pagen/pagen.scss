@@ -1,0 +1,51 @@
+.pagen{
+  display: block;
+  width: 100%;
+
+  &__show-more{
+    display: flex;
+    justify-content: center;
+    margin: PXtoREM(24) 0;
+    @include first-last-vertical;
+    @media #{$min_w768} {
+      margin: PXtoREM(40) 0;
+    }
+  }
+
+  &__items{
+    display: flex;
+    justify-content: center;
+    margin: PXtoREM(24) 0;
+    @include first-last-vertical;
+    @media #{$min_w768} {
+      margin: PXtoREM(40) 0;
+    }
+  }
+
+  &__item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: PXtoREM(40);
+    height: PXtoREM(40);
+    border-radius: PXtoREM(4);
+    color: black;
+    font-size: PXtoREM(16);
+    transition: $transition;
+    &:hover:not(._active):not(._elips){
+      @media #{$isHover} {
+        color: black;
+      }
+    }
+    &:active:not(._active):not(._elips){
+      color: black;
+    }
+
+    &._active{
+      background-color: black;
+      color: white;
+    }
+
+    &._elips{}
+  }
+}

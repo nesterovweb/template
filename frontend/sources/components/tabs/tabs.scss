@@ -1,0 +1,59 @@
+.tabs{
+
+  &__menu{
+    overflow: hidden;
+    touch-action: pan-y;
+    position: relative;
+
+    &__items{
+      display: flex;
+      position: relative;
+      width: 100%;
+    }
+
+    &__item{
+      width: auto;
+      flex-shrink: 0;
+    }
+
+    &__link{
+      display: block;
+      padding: PXtoREM(13) PXtoREM(32);
+      color: white;
+      white-space: nowrap;
+      background-color: rgba(black, .5);
+      transition: $transition;
+      &:hover{
+        @media #{$isHover} {
+          background-color: black;
+        }
+      }
+      &:active{
+        background-color: black;
+      }
+      &._active{
+        background-color: blue;
+      }
+    }
+
+    &__scrollbar{
+      position: relative;
+      height: PXtoREM(4);
+      margin-top: PXtoREM(2);
+      background-color: rgba(black, .5);
+
+      &__drag{
+        height: 100%;
+        background-color: blue;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__body{
+    display: none;
+    &._active{
+      display: block;
+    }
+  }
+}

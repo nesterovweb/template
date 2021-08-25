@@ -1,0 +1,77 @@
+@use 'sass:math';
+
+$transitionDuration: .4s;
+$transitionTimingFunction: cubic-bezier(0.25, 0.1, 0.25, 1);
+$transition: $transitionDuration $transitionTimingFunction;
+
+$colorBlack: black;
+
+$min_w768: '(min-width: 768px)';
+$max_w768: '(max-width: 767px)';
+$min_w1024: '(min-width: 1025px)';
+$max_w1024: '(max-width: 1024px)';
+$min_w1280: '(min-width: 1280px)';
+$max_w1280: '(max-width: 1279px)';
+$min_w1366: '(min-width: 1366px)';
+$max_w1366: '(max-width: 1365px)';
+$min_w1440: '(min-width: 1440px)';
+$max_w1440: '(max-width: 1439px)';
+$min_w1600: '(min-width: 1600px)';
+$max_w1600: '(max-width: 1599px)';
+$min_w1920: '(min-width: 1920px)';
+$max_w1920: '(max-width: 1919px)';
+
+$isHover: '(hover), (min-width:0\0), (min--moz-device-pixel-ratio:0), (-ms-high-contrast: none), (-ms-high-contrast: active)';
+
+@function PXtoREM($current) {
+  @return math.div($current, 16)+rem
+}
+@function PXtoVW($current) {
+  @return $current*0.06945 + vw
+}
+@function PXtoVH($current) {
+  @return $current*0.1032 + vh
+}
+
+@mixin first-last-vertical{
+  &:first-child{
+    margin-top: 0;
+  }
+  &:last-child{
+    margin-bottom: 0;
+  }
+}
+@mixin first-last-vertical-padding{
+  &:first-child{
+    padding-top: 0;
+  }
+  &:last-child{
+    padding-bottom: 0;
+  }
+}
+@mixin first-last-horizontal{
+  &:first-child{
+    margin-left: 0;
+  }
+  &:last-child{
+    margin-right: 0;
+  }
+}
+@mixin first-last-horizontal-padding{
+  &:first-child{
+    padding-left: 0;
+  }
+  &:last-child{
+    padding-right: 0;
+  }
+}
+
+@mixin absolut-wrap{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+// PROGECTS

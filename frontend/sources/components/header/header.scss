@@ -1,0 +1,16 @@
+.header{
+  position: fixed;
+  z-index: 11;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 PXtoREM(4) PXtoREM(4) rgba($colorBlack, .15);
+  transition: transform $transition;
+  &._fix{
+    transform: translateY(-100%);
+  }
+  &._fix-show{
+    transform: translateY(0);
+  }
+}

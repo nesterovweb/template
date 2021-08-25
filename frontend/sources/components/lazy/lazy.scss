@@ -1,0 +1,8 @@
+.lazy{
+  opacity: 0;
+  transition: opacity $transition;
+
+  &.loaded{
+    opacity: 1;
+  }
+}

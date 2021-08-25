@@ -1,0 +1,10 @@
+//modules
+@import "./modules/reset";
+@import "./modules/mixins";
+@import "./modules/fonts";
+@import "./modules/base-style";
+
+//components
+@import "../components/ajax-preloader/ajax-preloader";
+@import "../components/preloader/preloader";
+@import "../components/header/header";

@@ -1,0 +1,79 @@
+@use 'sass:math';
+
+._mobile{
+  @media #{$min_w768} {
+    display: none;
+  }
+}
+._not-mobile{
+  @media #{$max_w768} {
+    display: none;
+  }
+}
+
+// COLOR
+
+// FONT-SIZE
+
+// TEXT-TRANSFORM
+.tt-u{
+  text-transform: uppercase;
+}
+
+// FONT-WEIGHT
+.fw-normal{
+  font-weight: normal;
+}
+.fw-bold{
+  font-weight: bold;
+}
+
+// POSITION
+.p-r{
+  position: relative;
+}
+
+// TEXT_ALIGN
+.ta-c{
+  text-align: center;
+}
+
+// OVERFLOW
+.o-h{
+  overflow: hidden;
+}
+
+// WIDTH
+.w-100{
+  width: 100%;
+}
+
+@each $attr in height, margin-top, margin-bottom {
+  $int: 0;
+  $attrClass: $attr;
+  @if ($attr == 'height') {
+    $attrClass: 'h';
+  } @else if ($attr == 'margin-top'){
+    $attrClass: 'mt';
+  } @else if ($attr == 'margin-bottom'){
+    $attrClass: 'mb';
+  }
+  @for $i from 0 through 20 {
+    @if $i % 2 == 0 {
+      $int: math.div($i, 2);
+      .#{$attrClass}-#{$int}-rem{
+        #{$attr}: math.div($i, 2)+rem!important;
+        @media #{$min_w768} {
+          #{$attr}: math.div($i,2)+rem!important;
+        }
+      }
+    } @else {
+      .#{$attrClass}-#{$int}_5-rem{
+        #{$attr}: math.div($i, 2)+rem!important;
+        @media #{$min_w768} {
+          #{$attr}: math.div($i,2)+rem!important;
+        }
+      }
+    }
+  }
+}

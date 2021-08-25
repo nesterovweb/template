@@ -1,0 +1,260 @@
+.form-item{
+  position: relative;
+  margin: PXtoREM(25) 0;
+  @include first-last-vertical;
+
+  input[type=text],
+  input[type=tel],
+  input[type=email],
+  input[type=password] {
+    &::-ms-clear, &::-ms-reveal {
+      display: none;
+    }
+    appearance: none;
+    outline: none;
+    display: block;
+    width: 100%;
+    font-size: PXtoREM(16);
+    color: $colorBluish;
+    padding: 0 PXtoREM(16);
+    font-family: inherit;
+    font-weight: inherit;
+    background: none;
+    border: 1px solid #CCCCCC;
+    border-radius: 2px;
+    height: PXtoREM(56);
+    text-align: left;
+    transition: $transition;
+    &:focus{
+      border-color: black;
+    }
+    &[readonly]:not(.datepicker){
+      background: #F2F5F6;
+      pointer-events: none;
+      color: rgba($colorBluish, .5);
+    }
+  }
+  &._error input[type=text],
+  &._error input[type=tel],
+  &._error input[type=email],
+  &._error input[type=password]{
+    border-color: $colorRed;
+    background: rgba($colorRed, .05);
+  }
+
+  &.input-daterange input[type=text]{
+    background-image: url("/img/svg/calendar.svg");
+    background-size: PXtoREM(18) PXtoREM(20);
+    background-repeat: no-repeat;
+    background-position: calc(100% - 16px) 50%;
+  }
+
+  &._search input[type=text]{
+    background-image: url("/img/svg/search.svg");
+    background-size: PXtoREM(25) PXtoREM(25);
+    background-repeat: no-repeat;
+    background-position: calc(100% - 16px) 50%;
+  }
+
+  textarea{
+    appearance: none;
+    outline: none;
+    resize: none;
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    font-size: PXtoREM(16);
+    font-family: inherit;
+    border: 1px solid #CCCCCC;
+    border-radius: 2px;
+    background: none;
+    padding: PXtoREM(16);
+    transition: $transition;
+    &:focus{
+      border-color: black;
+    }
+  }
+  &._error textarea{
+    border-color: $colorRed;
+    background: rgba($colorRed, .05);
+  }
+
+  &__label{
+    display: block;
+    font-size: PXtoREM(14);
+    line-height: 1.4;
+    color: $colorBluish;
+    transition: $transition;
+    margin-bottom: PXtoREM(7);
+    &._absolute{
+      @media #{$min_w768} {
+        position: absolute;
+        margin: 0;
+        bottom: 100%;
+        padding-bottom: PXtoREM(7);
+      }
+    }
+
+    &._required{
+      &:after{
+        content: '*';
+        color: $colorRed;
+      }
+    }
+  }
+
+  &__error{
+    font-size: PXtoREM(14);
+    color: $colorRed;
+    line-height: 1.4;
+    display: none;
+    margin-top: PXtoREM(9);
+  }
+  &._error &__error{
+    display: block;
+  }
+
+  [type=submit]{
+    appearance: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  &__checkbox{
+    display: block;
+    position: relative;
+    font-size: PXtoREM(14);
+    line-height: 1.4;
+    cursor: pointer;
+    min-height: PXtoREM(24);
+    padding-left: PXtoREM(40);
+
+    input[type=checkbox],
+    input[type=radio]{
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    input[type=checkbox] + i,
+    input[type=radio] + i{
+      display: block;
+      cursor: pointer;
+      width: PXtoREM(24);
+      height: PXtoREM(24);
+      flex-shrink: 0;
+      border: 1px solid #807F83;
+      border-radius: PXtoREM(4);
+      transition: $transition;
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      &:before{
+        content: '';
+        display: block;
+        width: PXtoREM(16);
+        height: PXtoREM(6);
+        margin: PXtoREM(-5) 0 0 PXtoREM(-8);
+        border-bottom: 1px solid $colorRed;
+        border-left: 1px solid $colorRed;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: rotate(-45deg);
+        opacity: 0;
+        transition: $transition;
+      }
+    }
+    &:hover input[type=checkbox] + i,
+    &:hover input[type=radio] + i{
+      @media #{$isHover}{
+        border-color: $colorBluish;
+      }
+    }
+    input[type=checkbox]:checked + i,
+    input[type=radio]:checked + i{
+      border-color: $colorBluish;
+
+      &:before{
+        opacity: 1;
+      }
+    }
+  }
+  &._error &__checkbox{
+
+    i{
+      border-color: $colorRed;
+    }
+  }
+
+  &__radio{
+    display: block;
+    position: relative;
+    font-size: PXtoREM(14);
+    line-height: 1.4;
+    cursor: pointer;
+    min-height: PXtoREM(24);
+    padding-left: PXtoREM(40);
+
+    input[type=checkbox],
+    input[type=radio]{
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    input[type=checkbox] + i,
+    input[type=radio] + i{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      width: PXtoREM(24);
+      height: PXtoREM(24);
+      flex-shrink: 0;
+      border: 1px solid #807F83;
+      border-radius: 50%;
+      transition: $transition;
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      &:before{
+        content: '';
+        display: block;
+        width: PXtoREM(10);
+        height: PXtoREM(10);
+        background: $colorRed;
+        opacity: 0;
+        transition: $transition;
+        border-radius: 50%;
+      }
+    }
+    &:hover input[type=checkbox] + i,
+    &:hover input[type=radio] + i{
+      @media #{$isHover}{
+        border-color: $colorBluish;
+      }
+    }
+    input[type=checkbox]:checked + i,
+    input[type=radio]:checked + i{
+      border-color: $colorBluish;
+
+      &:before{
+        opacity: 1;
+      }
+    }
+  }
+  &._error &__radio{
+
+    i{
+      border-color: $colorRed;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+//modules
+@import "./modules/bootstrap-greed";
+@import "./modules/mixins";
+
+//components
+@import "../components/lazy/lazy";
+@import "../components/cookie-popup/cookie-popup";
+
+@import "../components/tabs/tabs";
+@import "../components/pagen/pagen";
+@import "../components/accordion/accordion";
+@import "../components/popup/popup";
+
+//conf
+@import "./modules/conf";

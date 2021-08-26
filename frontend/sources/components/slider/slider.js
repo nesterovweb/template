@@ -1,18 +1,20 @@
 $(function(){
 
-    App.Slider2 = {
+    App.Slider = {
 
         init: function(){
 
-            $('.js--slider-2-container').each(function(){
+            $('.js--slider').each(function(){
 
-                let $container = $(this),
-                    $slider = $('.js--slider-2', $container),
-                    $prev = $('.js--slider-2-prev', $container),
-                    $next = $('.js--slider-2-next', $container),
-                    $pagination = $('.js--slider-2-pagination', $container);
+                let $slider = $(this),
+                    $container = $('.js--slider-container', $slider),
+                    $slides = $('.js--slider-slides', $slider),
+                    $prev = $('.js--slider-prev', $slider),
+                    $next = $('.js--slider-next', $slider),
+                    $pagination = $('.js--slider-pagination', $slider),
+                    $scrollbar = $('.js--slider-scrollbar', $slider);
 
-                let slidesPerView = 1;
+                let slidesPerView = 3;
                 if ($slider.attr('data-items') != undefined) slidesPerView = $slider.attr('data-items');
                 let slidesPerViewSM = slidesPerView;
                 if ($slider.attr('data-items-sm') !== undefined) slidesPerViewSM = $slider.attr('data-items-sm');
@@ -38,9 +40,9 @@ $(function(){
                 let autoplay = false;
                 if ($slider.attr('data-autoplay') != undefined) autoplay = {delay:$slider.attr('data-autoplay'),disableOnInteraction:false,pauseOnMouseEnter:true};
 
-                new Swiper($slider[0], {
-                    wrapperClass: 'slider-2__slides',
-                    slideClass: 'slider-2__slide',
+                new Swiper($container[0], {
+                    wrapperClass: 'slider__slides',
+                    slideClass: 'slider__slide',
                     slidesPerView: slidesPerView,
                     simulateTouch: false,
                     autoHeight: autoHeight,
@@ -56,9 +58,15 @@ $(function(){
                     pagination: {
                         el: $pagination[0],
                         clickable: true,
-                        modifierClass: 'slider-2__pagination-',
-                        bulletClass: 'slider-2__pagination-bullet',
+                        modifierClass: 'slider__pagination-',
+                        bulletClass: 'slider__pagination-bullet',
                         bulletActiveClass: '_active'
+                    },
+                    scrollbar: {
+                        el: $scrollbar[0],
+                        hide: false,
+                        draggable: true,
+                        dragClass: 'slider__scrollbar__drag'
                     },
                     breakpoints: {
                         575 : {
@@ -81,6 +89,6 @@ $(function(){
         }
 
     };
-    App.Slider2.init();
+    App.Slider.init();
 
 });

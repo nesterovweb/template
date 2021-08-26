@@ -162,6 +162,37 @@ include 'header.php';
 
     </div>
 
+    <div class="section">
+
+        <h2>Слайдер</h2>
+
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="slider js--slider" data-items="2" data-items-md="3">
+                    <div class="p-r">
+                        <div class="slider__container js--slider-container">
+                            <div class="slider__slides js--slider-slides">
+                                <div class="slider__slide">Slide 1</div>
+                                <div class="slider__slide">Slide 2</div>
+                                <div class="slider__slide">Slide 3</div>
+                                <div class="slider__slide">Slide 4</div>
+                            </div>
+                        </div>
+                        <div class="slider__nav _horizontal">
+                            <a href="javascript:void(0);" class="slider__nav__arrow _prev js--slider-prev"></a>
+                            <a href="javascript:void(0);" class="slider__nav__arrow _next js--slider-next"></a>
+                        </div>
+                    </div>
+                    <div class="slider__pagination js--slider-pagination"></div>
+                    <div class="slider__scrollbar js--slider-scrollbar"></div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
 </div>
 
 <?php

@@ -38,12 +38,11 @@
 
     &__scrollbar{
       position: relative;
-      height: PXtoREM(4);
       margin-top: PXtoREM(2);
       background-color: rgba(black, .5);
 
       &__drag{
-        height: 100%;
+        height: PXtoREM(4);
         background-color: blue;
         cursor: pointer;
       }

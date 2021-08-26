@@ -15,3 +15,4 @@ import '../components/tabs/tabs';
 import '../components/pagen/pagen';
 import '../components/accordion/accordion';
 import '../components/popup/popup';
+import '../components/slider/slider';

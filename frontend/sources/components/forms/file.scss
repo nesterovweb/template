@@ -1,0 +1,75 @@
+.form-item{
+
+  &__file{
+    display: block;
+    position: relative;
+
+    input[type=file]{
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    &__add{}
+    &._filled &__add{
+      display: none;
+    }
+
+    &__info{
+      display: none;
+      border: 1px solid $colorBlueDark;
+      padding: PXtoREM(16) PXtoREM(24) PXtoREM(16) PXtoREM(40);
+      font-size: PXtoREM(16);
+      color: $colorBlueDark;
+      background-image: url("/img/svg/file.svg");
+      background-repeat: no-repeat;
+      background-position: PXtoREM(12) 50%;
+      background-size: PXtoREM(20) auto;
+      position: relative;
+      word-break: break-word;
+
+      &__delete{
+        display: block;
+        position: absolute;
+        z-index: 1;
+        cursor: pointer;
+        width: PXtoREM(24);
+        height: PXtoREM(24);
+        background: none;
+        border: none;
+        top: 50%;
+        margin-top: PXtoREM(-12);
+        right: PXtoREM(12);
+
+        &:before,
+        &:after{
+          content: '';
+          display: block;
+          width: 100%;
+          height: 1px;
+          background-color: $colorBlueDark;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          margin: 0 0 0 PXtoREM(-12);
+          transition: $transition;
+        }
+        &:before{
+          transform: rotate(45deg);
+        }
+        &:after{
+          transform: rotate(-45deg);
+        }
+        &:hover:before,
+        &:hover:after{
+          background-color: $colorRed;
+        }
+      }
+    }
+    &._filled &__info{
+      display: block;
+    }
+  }
+}

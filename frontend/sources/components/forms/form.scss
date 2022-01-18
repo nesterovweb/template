@@ -1,7 +1,15 @@
+//@import "./select";
+//@import "./range";
+//@import "./checkbox-radio";
+//@import "./file";
+
 .form-item{
   position: relative;
-  margin: PXtoREM(25) 0;
+  margin: PXtoREM(16) 0;
   @include first-last-vertical;
+  @media #{$min_w768} {
+    margin: PXtoREM(24) 0;
+  }
 
   input[type=text],
   input[type=tel],
@@ -15,91 +23,111 @@
     display: block;
     width: 100%;
     font-size: PXtoREM(16);
-    color: $colorBluish;
-    padding: 0 PXtoREM(16);
+    color: $colorBlack;
+    padding: PXtoREM(12) PXtoREM(16) 0;
     font-family: inherit;
     font-weight: inherit;
-    background: none;
-    border: 1px solid #CCCCCC;
-    border-radius: 2px;
+    background: $colorInputBg;
+    border: 1px solid $colorInputBg;
+    border-radius: PXtoREM(8);
     height: PXtoREM(56);
     text-align: left;
     transition: $transition;
+
+    @media #{$min_w768} {
+      height: PXtoREM(68);
+      padding-top: PXtoREM(16);
+    }
+
+    .form-white &{
+      background-color: white;
+      border-color: white;
+    }
+
+    &::placeholder{
+      color: $colorBlack;
+    }
+
     &:focus{
-      border-color: black;
+      border-color: $colorGray;
+      .form-white &{
+        border-color: $colorBlack;
+      }
     }
-    &[readonly]:not(.datepicker){
-      background: #F2F5F6;
-      pointer-events: none;
-      color: rgba($colorBluish, .5);
-    }
+
+    &[readonly]:not(.datepicker){}
   }
   &._error input[type=text],
   &._error input[type=tel],
   &._error input[type=email],
   &._error input[type=password]{
-    border-color: $colorRed;
-    background: rgba($colorRed, .05);
-  }
-
-  &.input-daterange input[type=text]{
-    background-image: url("/img/svg/calendar.svg");
-    background-size: PXtoREM(18) PXtoREM(20);
-    background-repeat: no-repeat;
-    background-position: calc(100% - 16px) 50%;
-  }
-
-  &._search input[type=text]{
-    background-image: url("/img/svg/search.svg");
-    background-size: PXtoREM(25) PXtoREM(25);
-    background-repeat: no-repeat;
-    background-position: calc(100% - 16px) 50%;
+    border-color: $colorRed!important;
+    background: #FFF2F2!important;
   }
 
   textarea{
     appearance: none;
     outline: none;
     resize: none;
-    overflow: hidden;
     display: block;
     width: 100%;
+    color: $colorBlack;
     font-size: PXtoREM(16);
     font-family: inherit;
-    border: 1px solid #CCCCCC;
-    border-radius: 2px;
-    background: none;
-    padding: PXtoREM(16);
+    border: 1px solid $colorInputBg;
+    border-radius: PXtoREM(8);
+    background: $colorInputBg;
+    padding: PXtoREM(32) PXtoREM(16) PXtoREM(16);
     transition: $transition;
+    .form-white &{
+      background-color: white;
+      border-color: white;
+    }
+    &::placeholder{
+      color: $colorBlack;
+    }
     &:focus{
-      border-color: black;
+      outline: none;
+      border-color: $colorGray;
+      box-shadow: 1px 1px 0 0 $colorGray;
+      .form-white &{
+        border-color: $colorBlack;
+      }
     }
   }
   &._error textarea{
     border-color: $colorRed;
-    background: rgba($colorRed, .05);
+    background: #FFF2F2;
   }
 
   &__label{
     display: block;
-    font-size: PXtoREM(14);
-    line-height: 1.4;
-    color: $colorBluish;
+    position: absolute;
+    font-size: PXtoREM(16);
+    color: $colorBlueDark;
+    opacity: .4;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    padding: PXtoREM(17) PXtoREM(16) 0;
     transition: $transition;
-    margin-bottom: PXtoREM(7);
-    &._absolute{
-      @media #{$min_w768} {
-        position: absolute;
-        margin: 0;
-        bottom: 100%;
-        padding-bottom: PXtoREM(7);
-      }
+    pointer-events: none;
+    @media #{$min_w768} {
+      padding-top: PXtoREM(24);
     }
-
-    &._required{
-      &:after{
-        content: '*';
-        color: $colorRed;
-      }
+    &._static{
+      position: relative;
+      top: auto;
+      left: auto;
+      padding: 0;
+      margin-bottom: .5rem;
+    }
+  }
+  &._not-empty &__label:not(._static){
+    font-size: PXtoREM(12);
+    padding-top: PXtoREM(8);
+    @media #{$min_w768} {
+      padding-top: PXtoREM(14);
     }
   }
 
@@ -108,7 +136,7 @@
     color: $colorRed;
     line-height: 1.4;
     display: none;
-    margin-top: PXtoREM(9);
+    margin-top: PXtoREM(8);
   }
   &._error &__error{
     display: block;
@@ -120,141 +148,65 @@
     border: none;
     cursor: pointer;
   }
-
-  &__checkbox{
-    display: block;
-    position: relative;
-    font-size: PXtoREM(14);
-    line-height: 1.4;
-    cursor: pointer;
-    min-height: PXtoREM(24);
-    padding-left: PXtoREM(40);
-
-    input[type=checkbox],
-    input[type=radio]{
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 0;
-      visibility: hidden;
+  &._submit-success{
+    display: flex;
+    @media #{$max_w768} {
+      flex-direction: column-reverse;
+      align-items: flex-start;
     }
-
-    input[type=checkbox] + i,
-    input[type=radio] + i{
-      display: block;
-      cursor: pointer;
-      width: PXtoREM(24);
-      height: PXtoREM(24);
-      flex-shrink: 0;
-      border: 1px solid #807F83;
-      border-radius: PXtoREM(4);
-      transition: $transition;
-      position: absolute;
-      top: 0;
-      left: 0;
-
-      &:before{
-        content: '';
-        display: block;
-        width: PXtoREM(16);
-        height: PXtoREM(6);
-        margin: PXtoREM(-5) 0 0 PXtoREM(-8);
-        border-bottom: 1px solid $colorRed;
-        border-left: 1px solid $colorRed;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: rotate(-45deg);
-        opacity: 0;
-        transition: $transition;
-      }
-    }
-    &:hover input[type=checkbox] + i,
-    &:hover input[type=radio] + i{
-      @media #{$isHover}{
-        border-color: $colorBluish;
-      }
-    }
-    input[type=checkbox]:checked + i,
-    input[type=radio]:checked + i{
-      border-color: $colorBluish;
-
-      &:before{
-        opacity: 1;
-      }
-    }
-  }
-  &._error &__checkbox{
-
-    i{
-      border-color: $colorRed;
-    }
-  }
-
-  &__radio{
-    display: block;
-    position: relative;
-    font-size: PXtoREM(14);
-    line-height: 1.4;
-    cursor: pointer;
-    min-height: PXtoREM(24);
-    padding-left: PXtoREM(40);
-
-    input[type=checkbox],
-    input[type=radio]{
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 0;
-      visibility: hidden;
-    }
-
-    input[type=checkbox] + i,
-    input[type=radio] + i{
-      display: flex;
+    @media #{$min_w768} {
       align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      width: PXtoREM(24);
-      height: PXtoREM(24);
-      flex-shrink: 0;
-      border: 1px solid #807F83;
-      border-radius: 50%;
-      transition: $transition;
-      position: absolute;
-      top: 0;
-      left: 0;
-
-      &:before{
-        content: '';
-        display: block;
-        width: PXtoREM(10);
-        height: PXtoREM(10);
-        background: $colorRed;
-        opacity: 0;
-        transition: $transition;
-        border-radius: 50%;
-      }
+      margin-top: PXtoREM(32);
     }
-    &:hover input[type=checkbox] + i,
-    &:hover input[type=radio] + i{
-      @media #{$isHover}{
-        border-color: $colorBluish;
-      }
-    }
-    input[type=checkbox]:checked + i,
-    input[type=radio]:checked + i{
-      border-color: $colorBluish;
 
-      &:before{
-        opacity: 1;
+    .btn{
+      @media #{$max_w768} {
+        margin-top: PXtoREM(32);
+      }
+      @media #{$min_w768} {
+        margin-right: PXtoREM(32);
+        flex-shrink: 0;
       }
     }
   }
-  &._error &__radio{
+}
 
-    i{
-      border-color: $colorRed;
+.form-require-note{
+  font-size: 9px;
+  line-height: 12px;
+  color: rgba(black, .5);
+  &.color-white{
+    opacity: .5;
+  }
+
+  .form-item + &{
+    margin-top: PXtoREM(-8);
+  }
+
+  + .form-item{
+    margin-top: PXtoREM(40);
+  }
+}
+
+.style-blue-form{
+  position: relative;
+
+  &:before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: -32px;
+    left: -16px;
+    width: calc(100% + 32px);
+    height: calc(100% + 64px);
+    background: $colorGrayBlue;
+    z-index: -1;
+    @media #{$min_w768} {
+      width: calc(100% + 112px);
+      height: calc(100% + 148px);
+      top: -74px;
+      left: -56px;
+      border-radius: PXtoREM(16);
     }
   }
 }

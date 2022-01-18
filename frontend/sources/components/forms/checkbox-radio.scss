@@ -1,0 +1,176 @@
+.form-item{
+
+  &__checkbox{
+    display: block;
+    position: relative;
+    font-size: PXtoREM(14);
+    line-height: 1.33;
+    color: $colorBlack;
+    cursor: pointer;
+    min-height: PXtoREM(20);
+    padding-left: PXtoREM(36);
+    &._success{
+      font-size: PXtoREM(12);
+    }
+    &._disabled{
+      filter: grayscale(100);
+      opacity: .5;
+      pointer-events: none;
+    }
+
+    .leasing-form &{
+      color: white;
+    }
+
+    a{
+      color: $colorBlueDark;
+      text-decoration: underline;
+      transition: $transition;
+      .leasing-form &{
+        color: $colorBlueLight;
+      }
+      &:hover{
+        @media #{$isHover} {
+          color: $colorBlueMid;
+        }
+      }
+    }
+    &.color-white a{
+      color: $colorBlueLight;
+    }
+
+    input[type=checkbox],
+    input[type=radio]{
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    input[type=checkbox] + i,
+    input[type=radio] + i{
+      display: block;
+      cursor: pointer;
+      width: PXtoREM(20);
+      height: PXtoREM(20);
+      flex-shrink: 0;
+      border: 1px solid $colorBlueAlt;
+      border-radius: PXtoREM(4);
+      background-color: white;
+      transition: $transition;
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      ._success &{
+        top: PXtoREM(3);
+      }
+
+      &:before{
+        content: '';
+        display: block;
+        width: PXtoREM(18);
+        height: PXtoREM(18);
+        background: url("/img/svg/checkbox.svg");
+        background-size: 100% 100%;
+        position: absolute;
+        top: PXtoREM(-4);
+        right: PXtoREM(-3);
+        opacity: 0;
+        transition: $transition;
+      }
+    }
+    &:hover input[type=checkbox] + i,
+    &:hover input[type=radio] + i{
+      @media #{$isHover}{
+        border-color: $colorBlueMid;
+      }
+    }
+    input[type=checkbox]:checked + i,
+    input[type=radio]:checked + i{
+
+      &:before{
+        opacity: 1;
+      }
+    }
+  }
+  &._error &__checkbox{
+
+    i{
+      border-color: $colorRed;
+    }
+  }
+
+  &__radio{
+    display: block;
+    position: relative;
+    font-size: PXtoREM(14);
+    line-height: 1.33;
+    color: black;
+    cursor: pointer;
+    min-height: PXtoREM(20);
+    padding-left: PXtoREM(36);
+    &._disabled{
+      filter: grayscale(100);
+      opacity: .5;
+      pointer-events: none;
+    }
+
+    input[type=checkbox],
+    input[type=radio]{
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    input[type=checkbox] + i,
+    input[type=radio] + i{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      width: PXtoREM(20);
+      height: PXtoREM(20);
+      flex-shrink: 0;
+      border: 1px solid $colorBlueDark;
+      border-radius: 50%;
+      transition: $transition;
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      &:before{
+        content: '';
+        display: block;
+        width: PXtoREM(10);
+        height: PXtoREM(10);
+        background: $colorBlueDark;
+        opacity: 0;
+        transition: $transition;
+        border-radius: 50%;
+      }
+    }
+    &:hover input[type=checkbox] + i,
+    &:hover input[type=radio] + i{
+      @media #{$isHover}{
+        border-color: $colorBlueMid;
+      }
+    }
+    input[type=checkbox]:checked + i,
+    input[type=radio]:checked + i{
+
+      &:before{
+        opacity: 1;
+      }
+    }
+  }
+  &._error &__radio{
+
+    i{
+      border-color: $colorRed;
+    }
+  }
+}

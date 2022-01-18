@@ -20,8 +20,7 @@
 
 </div><!--page-->
 
-<link rel="stylesheet" href="/frontend/libs/css/jquery.fancybox.min.css">
-<link rel="stylesheet" href="/frontend/libs/css/swiper-bundle.min.css">
+<link rel="stylesheet" href="/frontend/libs/css/fancybox.css">
 
 <link rel="stylesheet" href="/frontend/assets/global.css?v=<?=filemtime($_SERVER['DOCUMENT_ROOT'].'/frontend/assets/global.css')?>">
 <? $pageCss = '/frontend/assets/page-'.$pageFrontendDependence.'.css'; ?>
@@ -36,7 +35,7 @@
 <script defer src="/frontend/libs/js/detect.min.js"></script>
 <script defer src="/frontend/libs/js/lozad.js"></script>
 <script defer src="/frontend/libs/js/scrollMagicPack.js"></script>
-<script defer src="/frontend/libs/js/jquery.fancybox.min.js"></script>
+<script defer src="/frontend/libs/js/fancybox.umd.js"></script>
 <script defer src="/frontend/libs/js/swiper-bundle.min.js"></script>
 
 <script defer src="/frontend/assets/global.js?v=<?=filemtime($_SERVER['DOCUMENT_ROOT'].'/frontend/assets/global.js')?>"></script>

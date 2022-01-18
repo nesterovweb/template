@@ -2,12 +2,12 @@
 
 ._mobile{
   @media #{$min_w768} {
-    display: none;
+    display: none!important;
   }
 }
-._not-mobile{
+._desktop{
   @media #{$max_w768} {
-    display: none;
+    display: none!important;
   }
 }
 
@@ -48,7 +48,7 @@
   width: 100%;
 }
 
-@each $attr in height, margin-top, margin-bottom {
+@each $attr in height, margin-top, margin-bottom, margin-right, margin-left {
   $int: 0;
   $attrClass: $attr;
   @if ($attr == 'height') {
@@ -57,19 +57,23 @@
     $attrClass: 'mt';
   } @else if ($attr == 'margin-bottom'){
     $attrClass: 'mb';
+  } @else if ($attr == 'margin-right'){
+    $attrClass: 'mr';
+  } @else if ($attr == 'margin-left'){
+    $attrClass: 'ml';
   }
   @for $i from 0 through 20 {
     @if $i % 2 == 0 {
       $int: math.div($i, 2);
       .#{$attrClass}-#{$int}-rem{
-        #{$attr}: math.div($i, 2)+rem!important;
+        #{$attr}: math.div($i, 3)+rem!important;
         @media #{$min_w768} {
           #{$attr}: math.div($i,2)+rem!important;
         }
       }
     } @else {
       .#{$attrClass}-#{$int}_5-rem{
-        #{$attr}: math.div($i, 2)+rem!important;
+        #{$attr}: math.div($i, 3)+rem!important;
         @media #{$min_w768} {
           #{$attr}: math.div($i,2)+rem!important;
         }

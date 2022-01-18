@@ -9,9 +9,14 @@
   &__slides{
     display: flex;
 
-    .swiper-container-autoheight &{
+    .swiper-autoheight &{
       align-items: flex-start;
       transition-property: transform,height;
+    }
+
+    .swiper-grid-column > &{
+      flex-wrap: wrap;
+      flex-direction: column;
     }
   }
 
@@ -22,13 +27,20 @@
     position: relative;
     transition-property: transform;
 
+    .swiper-autoheight &,
     .swiper-container-autoheight &{
       height: auto;
     }
 
-    .swiper-container-fade & {
+    .swiper-fade &,
+    .swiper-container-fade &{
       pointer-events: none;
       transition-property: opacity;
+      height: auto;
+
+      &.swiper-slide-active{
+        pointer-events: auto;
+      }
     }
   }
 

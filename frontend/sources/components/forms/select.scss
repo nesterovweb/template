@@ -1,0 +1,246 @@
+.form-item{
+
+  select{
+    &::-ms-expand {
+      display: none;
+    }
+    appearance: none;
+    outline: none;
+    display: block;
+    width: 100%;
+    font-size: PXtoREM(16);
+    font-family: inherit;
+    border: 1px solid #CCCCCC;
+    border-radius: 2px;
+    height: PXtoREM(56);
+    padding: 0 PXtoREM(25) 0 PXtoREM(16);
+    background-color: white;
+    background-image: url("/img/svg/select.svg");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 22px) 50%;
+    background-size: PXtoREM(12) PXtoREM(7);
+    &.select2-hidden-accessible{
+      display: none;
+    }
+  }
+  &._error select{
+    border-color: $colorRed;
+    background: rgba($colorRed, .05);
+  }
+
+  &__select-multiple-placeholder{
+    @include absolut-wrap;
+    padding: PXtoREM(16) PXtoREM(16) 0;
+    font-size: PXtoREM(16);
+    pointer-events: none;
+  }
+  &._not-empty &__select-multiple-placeholder{
+    display: none;
+  }
+
+  .select2{
+    display: block;
+
+    .selection{
+      display: block;
+
+      .select2-selection{
+        display: block;
+        position: relative;
+
+        .select2-search{
+          display: none;
+        }
+
+        &__rendered{
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          outline: none;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          width: 100%;
+          background-color: $colorInputBg;
+          border: 1px solid $colorInputBg;
+          min-height: PXtoREM(68);
+          border-radius: PXtoREM(8);
+          padding: PXtoREM(6) PXtoREM(38) PXtoREM(6) PXtoREM(16);
+          font-size: PXtoREM(16);
+          font-family: inherit;
+          background-image: url("/img/svg/select.svg");
+          background-size: PXtoREM(14) PXtoREM(8);
+          background-repeat: no-repeat;
+          background-position: calc(100% - 16px) 50%;
+          cursor: pointer;
+          .form-white &{
+            background-color: white;
+            border-color: white;
+          }
+        }
+
+        &__choice{
+          display: flex;
+          align-items: center;
+          flex-direction: row-reverse;
+          margin: PXtoREM(2) PXtoREM(8) PXtoREM(2) 0;
+          background-color: $colorBlueLight;
+          padding: PXtoREM(6) PXtoREM(10);
+          border-radius: PXtoREM(8);
+          font-size: PXtoREM(14);
+          line-height: 1;
+
+          &__remove{
+            display: block;
+            background: none;
+            width: PXtoREM(24);
+            height: PXtoREM(24);
+            background-image: url("/img/svg/select-x.svg");
+            background-size: 100% 100%;
+            cursor: pointer;
+            border: none;
+            padding: 0;
+            margin: 0 0 0 PXtoREM(8);
+            font-size: 0;
+          }
+        }
+
+        &__arrow{
+          display: none;
+        }
+      }
+    }
+
+    &.select2-container--open .selection .select2-selection__rendered{
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    &.select2-container--open .select2-selection__arrow{
+      transform: scale(1,-1);
+    }
+
+    .dropdown-wrapper{}
+  }
+  .select2-container{
+    width: 100%;
+    z-index: 9;
+  }
+  .select2-dropdown{
+    width: 100% !important;
+    display: block;
+    border-radius: 0 0 PXtoREM(8) PXtoREM(8);
+    overflow: hidden;
+    background: $colorInputBg;
+    .form-white &{
+      background-color: white;
+      border-left: 1px solid $colorGrayLight;
+      border-right: 1px solid $colorGrayLight;
+      border-bottom: 1px solid $colorGrayLight;
+    }
+
+    &:before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 16px;
+      width: calc(100% - 32px);
+      height: 1px;
+      background-color: #CCCCCC;
+    }
+
+    .select2-search{
+      display: block;
+      &.select2-search--hide{
+        display: none;
+      }
+
+      input{
+        display: block;
+        width: 100%;
+        font-family: inherit;
+        border: none;
+        border-bottom: 1px solid #CCCCCC;
+        color: $colorBlack;
+        &::-ms-clear, &::-ms-reveal { display: none; }
+        appearance: none;
+        outline: none;
+        border-radius: 0;
+        font-size: PXtoREM(16);
+        height: PXtoREM(40);
+        padding: 0 PXtoREM(12);
+      }
+    }
+
+    .select2-results{
+      display: block;
+
+      &__options{
+        display: block;
+        max-height: PXtoREM(300);
+        overflow-y: auto;
+      }
+
+      &__option{
+        display: block;
+        padding: 0 PXtoREM(16);
+        margin: PXtoREM(12) 0;
+        font-size: PXtoREM(16);
+        cursor: pointer;
+        color: $colorBlack;
+        transition: $transition;
+        &--selected{
+          color: $colorBlueDark;
+        }
+        //&--highlighted,
+        &:hover{
+          @media #{$isHover} {
+            color: $colorYellowDark;
+          }
+        }
+
+        &:before{
+          display: none;
+        }
+
+        span{
+          display: flex;
+          align-items: center;
+
+          img{
+            margin-right: PXtoREM(8);
+            object-fit: contain;
+          }
+        }
+      }
+    }
+  }
+
+  &._error .select2 .selection .select2-selection__rendered{
+    border-color: $colorRed;
+    background: rgba($colorRed, .05);
+  }
+}
+
+.select-from-to{
+  display: flex;
+
+  &__item{
+    width: 100%;
+    padding-left: 1px;
+    &:first-child{
+      padding-left: 0;
+
+      .form-item .select2 .selection .select2-selection__rendered{
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+    &:last-child{
+
+      .form-item .select2 .selection .select2-selection__rendered{
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+  }
+}

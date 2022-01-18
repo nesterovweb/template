@@ -1,0 +1,134 @@
+.range{
+  height: PXtoREM(56);
+  background: $colorInputBg;
+  border-radius: PXtoREM(8);
+  position: relative;
+  font-size: PXtoREM(16);
+  color: $colorBlack;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 PXtoREM(16);
+  margin-bottom: PXtoREM(43);
+  @include first-last-vertical;
+
+  @media #{$min_w768} {
+    height: PXtoREM(72);
+    font-size: PXtoREM(18);
+    margin-bottom: PXtoREM(67);
+  }
+
+  .form-white &{
+    background-color: white;
+  }
+
+  &._form-item{
+    height: PXtoREM(68);
+    font-size: PXtoREM(16);
+  }
+
+  &__slider{
+    &.noUi-target{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: none;
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
+      &.noUi-horizontal{
+        height: PXtoREM(4);
+      }
+
+      .noUi-connects{
+        border-radius: 0 0 0 PXtoREM(8);
+      }
+
+      .noUi-connect{
+        background-color: $colorBlueDark;
+      }
+
+      .noUi-handle{
+        background-color: $colorBlueMid;
+        border-radius: 50%;
+        box-shadow: none;
+        border: none;
+        cursor: pointer;
+
+        &:before,
+        &:after{
+          display: none;
+        }
+      }
+      &.noUi-horizontal .noUi-handle{
+        width: PXtoREM(16);
+        height: PXtoREM(16);
+        top: PXtoREM(-6);
+        right: PXtoREM(-8);
+      }
+    }
+  }
+
+  &__name{
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  &__value{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    &._as{
+      flex-wrap: wrap;
+    }
+
+    input{
+      appearance: none;
+      border: none;
+      outline: none;
+      text-align: right!important;
+      font-family: inherit;
+      font-size: inherit;
+      padding: 0!important;
+      width: PXtoREM(120);
+      margin-right: PXtoREM(8);
+      background: inherit;
+      @include first-last-horizontal;
+    }
+    &._left input{
+      text-align: left!important;
+    }
+
+    span{
+      display: block;
+      line-height: 1;
+    }
+  }
+
+  &__from,
+  &__to{
+    position: absolute;
+    top: 100%;
+    font-size: PXtoREM(14);
+    color: $colorGray;
+    padding-top: PXtoREM(8);
+    @media #{$min_w768} {
+      padding-top: PXtoREM(16);
+    }
+
+    ._form-item &{
+      padding-top: PXtoREM(6);
+      @media #{$min_w768} {
+        padding-top: PXtoREM(12);
+      }
+    }
+  }
+  &__from{
+    left: 0;
+  }
+  &__to{
+    right: 0;
+  }
+}

@@ -11,7 +11,9 @@ var gulp = require('gulp'),
     svgSprite = require('gulp-svg-sprite'),
     svgmin = require('gulp-svgmin'),
     cheerio = require('gulp-cheerio'),
-    replace = require('gulp-replace');
+    replace = require('gulp-replace'),
+
+    fs = require('fs');
 
 var sourcesPath = './sources';
 var assetsPath = './assets';
@@ -21,12 +23,18 @@ var pages = [];
 gulp.task('style', function(done) {
 
     function style(fileName) {
-        gulp.src(sourcesPath + '/style/'+fileName+'.scss')
-            .pipe(sourcemaps.init())
-            .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-            .pipe(sourcemaps.write('map'))
-            .pipe(gulp.dest(assetsPath))
-            .pipe(touch());
+        var filePath = sourcesPath + '/style/'+fileName+'.scss';
+        fs.access(filePath, function(err) {
+            if (!err) {
+                gulp.src(filePath)
+                    .pipe(sourcemaps.init())
+                    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+                    .pipe(autoprefixer())
+                    .pipe(sourcemaps.write('map'))
+                    .pipe(gulp.dest(assetsPath))
+                    .pipe(touch());
+            }
+        });
     }
     style('base');
     style('global');
@@ -40,30 +48,35 @@ gulp.task('style', function(done) {
 gulp.task('js', function(done) {
 
     function script(fileName){
-        gulp.src(sourcesPath + '/js/'+fileName+'.js')
-            .pipe(webpackStream({
-                mode: 'development',
-                output: {
-                    filename: fileName+'.js'
-                },
-                module: {
-                    rules: [
-                        {
-                            test: /\.m?js$/,
-                            exclude: /node_modules/,
-                            use: {
-                                loader: "babel-loader",
-                                options: {
-                                    presets: ['@babel/preset-env']
+        var filePath = sourcesPath + '/js/'+fileName+'.js';
+        fs.access(filePath, function(err){
+            if (!err) {
+                gulp.src(filePath)
+                    .pipe(webpackStream({
+                        mode: 'development',
+                        output: {
+                            filename: fileName+'.js'
+                        },
+                        module: {
+                            rules: [
+                                {
+                                    test: /\.m?js$/,
+                                    exclude: /node_modules/,
+                                    use: {
+                                        loader: "babel-loader",
+                                        options: {
+                                            presets: ['@babel/preset-env']
+                                        }
+                                    }
                                 }
-                            }
+                            ]
                         }
-                    ]
-                }
-            }))
-            .on('error', function handleError() { this.emit('end'); })
-            .pipe(gulp.dest(assetsPath))
-            .pipe(touch());
+                    }))
+                    .on('error', function handleError() { this.emit('end'); })
+                    .pipe(gulp.dest(assetsPath))
+                    .pipe(touch());
+            }
+        });
     }
     script('base');
     script('global');
